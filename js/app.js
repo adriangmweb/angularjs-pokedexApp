@@ -8,7 +8,8 @@
         'pokedex.services'
     ]);
     
-    app.config(['$routeProvider', function ($routeProvider) {
+    app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+        $locationProvider.html5Mode(true);
         
         $routeProvider
             .when('/', {
@@ -19,13 +20,14 @@
                 templateUrl: 'views/pokemon.html',
                 controller: 'PokemonController'
             })
-        .when('/:type', {
-            templateUrl: 'views/pokedex.html',
-            controller: 'PokedexController'
-        })
+            .when('/:type', {
+                templateUrl: 'views/pokedex.html',
+                controller: 'PokedexController'
+            })
             .otherwise({
                 redirectTo: '/'
-            })
+            });
+        
     }]);
 
 })();
